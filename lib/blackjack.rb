@@ -29,9 +29,9 @@ def initial_round
   card_one = deal_card
   card_two = deal_card
   sum = card_one + card_two
-  puts "Your cards add up to #{sum}"
+  display_card_total(sum)
+  return sum
 end
-
 def hit?(user_hand)
   prompt_user
   user_input = get_user_input
@@ -60,5 +60,10 @@ end
 
 def runner
   welcome
-
+  card_total = initial_round
+  until card_total > 21 do
+    card_total = hit?(card_total)
+    display_card_total(card_total)
+  end
+  end_game(card_total)
 end
